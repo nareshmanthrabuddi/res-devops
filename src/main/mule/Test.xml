@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="64ad1caa-abd9-4f22-8f6d-fe388327b117" >
+		<http:listener-connection host="0.0.0.0" port="7171" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="f943374e-781d-441a-800a-c6d7ca3fc792" file="dev.yaml" />
+	<flow name="TestFlow" doc:id="582a76cd-cc62-4cfd-aae7-ff157ffeb27f" >
+		<http:listener doc:name="Listener" doc:id="3027a370-fa25-4597-85a5-e98a2872af78" config-ref="HTTP_Listener_config" path="/getData"/>
+		<logger level="INFO" doc:name="Logger" doc:id="970c3ef6-17cc-4500-a188-62a1d3d33dda" message="## CI/CD Implementation... ##"/>
+		<set-payload value="#['CI/CD Demo...']" doc:name="Set Payload" doc:id="30b8584d-bbee-404d-9039-2180e8d01e71" />
+		<set-variable value="DevOps" doc:name="Set Variable" doc:id="ca889b32-5313-4b5b-9643-3cf2777c1d4f" variableName="str"/>
+		<logger level="INFO" doc:name="Logger" doc:id="073902d8-7b00-4f4c-9818-6190a2c2dad8" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ed321077-ebab-4b86-982c-8aada1688766" message="#[vars.str]"/>
+	</flow>
+</mule>
