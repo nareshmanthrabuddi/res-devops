@@ -205,7 +205,6 @@ def UDF_DeployToCloudHub() {
 	echo "VCORES : ${v_cores}"
 	echo "APP_EXISTS is : ${v_appExists}"
 	echo "APPLICATION_NAME is : ${v_applicationName}"
-	echo "ANYPOINT_CREDENTIAL_ID is : ${v_anypointCredentialID}"
 	echo "ANYPOINT_ORGANIZATION is : ${v_anypointOrganization}"
 	echo "ANYPOINT_ENVIRONMENT is : ${v_anypointEnvironment}"	
 	echo "Environment Workspace is : ${env.WORKSPACE}"	
@@ -224,10 +223,10 @@ def UDF_DeployToCloudHub() {
 		v_anypointCredentialID= 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
 	}
 
-	echo "Anypoint credential ID is : ${v_anypointCredentialID}" 
+	echo "ANYPOINT_CREDENTIAL_ID is : ${v_anypointCredentialID}"
 
 	withCredentials([usernamePassword(credentialsId: "${v_anypointCredentialID}",passwordVariable: 'ANYPOINT_PASSWORD',usernameVariable: 'ANYPOINT_USERNAME')]) {
-		bat "mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_anypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -Dworkers=${v_workers} -Dcores=${v_cores} -DapplicationName=${v_applicationName}"
+		bat "mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_anypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -Dworkers=${v_workers} -Dcores=${v_cores} -DmuleVersion=${v_muleRuntimeEnvironment} -DapplicationName=${v_applicationName}"
 	}
 }
 
