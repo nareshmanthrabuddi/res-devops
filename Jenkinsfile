@@ -210,28 +210,6 @@ def UDF_DeployToCloudHub() {
 	echo "ANYPOINT_ENVIRONMENT is : ${v_AnypointEnvironment}"	
 	echo "Environment Workspace is : ${env.WORKSPACE}"	
 	echo "Download File Path is : ${v_downloadFilePath}"
-
-	/*
-	if("${params.ENVIRONMENT}" == 'DEV') {
-
-		v_applicationName = "dev-${params.APPLICATION_NAME}"
-		v_muleEvn = 'dev'
-		v_encryptKey = 'MULESOFT_DEV'
-
-	} else if("${params.ENVIRONMENT}" == 'SIT') {
-
-		v_applicationName=sit-"sit-${params.APPLICATION_NAME}"
-		v_muleEvn = 'sit'
-		v_encryptKey = 'MULESOFT_SIT'
-
-	} else if("${params.ENVIRONMENT}" == 'PROD') {
-
-		v_applicationName=sit-"${params.APPLICATION_NAME}"
-		v_muleEvn = 'prod'
-		v_encryptKey = 'MULESOFT_PROD'
-
-	}
-	*/
 	
 	if("${params.ANYPOINT_CREDENTIAL_ID}" == 'DEV_CREDENTIAL_ID') {
 
@@ -246,31 +224,10 @@ def UDF_DeployToCloudHub() {
 		v_anypointCredentialID= 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
 	}
 
-	echo "Application name after renaming: ${v_applicationName}"
 	echo "Anypoint credential ID is : ${v_anypointCredentialID}" 
-	//echo "Mule Env is : ${v_muleEvn}"
-	//echo "Encrypt Key : ${v_encryptKey}"
 
-	if(APP_EXISTS == 'YES') {	
-		withCredentials([usernamePassword(credentialsId: "${v_anypointCredentialID}",passwordVariable: 'password',usernameVariable: 'username')]) {
-			sh """			
-				export ANYPOINT_USERNAME=${username}
-				export ANYPOINT_PASSWORD=${password}
-				export ANYPOINT_ORG="${v_anypointOrganization}"
-				export ANYPOINT_ENV="${v_AnypointEnvironment}"
-				anypoint-cli runtime-mgr cloudhub-application modify "${v_applicationName}" \"${v_downloadFilePath}\" --workerSize "${v_cores}" --workers "${v_workers}" --runtime "${v_muleRuntimeEnvironment}"
-			"""
-		}
-	} else {
-		withCredentials([usernamePassword(credentialsId: "${v_anypointCredentialID}",passwordVariable: 'password',usernameVariable: 'username')]) {
-			sh """			
-				export ANYPOINT_USERNAME=${username}
-				export ANYPOINT_PASSWORD=${password}
-				export ANYPOINT_ORG="${AnypointOrganization}"
-				export ANYPOINT_ENV="${AnypointEnvironment}"
-				anypoint-cli runtime-mgr cloudhub-application deploy "${v_applicationName}" \"${v_downloadFilePath}\" --workerSize "${v_cores}" --workers "${v_workers}" --runtime "${v_muleRuntimeEnvironment}"
-			"""
-		}
+	withCredentials([usernamePassword(credentialsId: "${v_anypointCredentialID}",passwordVariable: 'ANYPOINT_PASSWORD',usernameVariable: 'ANYPOINT_USERNAME')]) {
+		bat 'mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_AnypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -DapplicationName=${v_applicationName}'
 	}
 }
 
