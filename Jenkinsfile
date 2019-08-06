@@ -164,7 +164,7 @@ def UDF_ExecuteSonarQubeRules()
 {	
 	try{
 		echo 'SonarQube Rules Execution started'
-		bat 'mvn sonar:sonar'
+		//bat 'mvn sonar:sonar'
 		echo 'SonarQube Rules Execution Completed'	
 	} catch(error) {
 		throw(error)
@@ -190,7 +190,7 @@ def UDF_DeployToCloudHub() {
 	v_applicationName = "${params.APPLICATION_NAME}"
 	v_anypointCredentialID = "${params.ANYPOINT_CREDENTIAL_ID}"
 	v_anypointOrganization = "${params.ANYPOINT_ORGANIZATION}"
-	v_AnypointEnvironment = "${params.ANYPOINT_ENVIRONMENT}"
+	v_anypointEnvironment = "${params.ANYPOINT_ENVIRONMENT}"
 	v_muleEvn = ""
 	v_encryptKey = ""
 	v_artifactId = UDF_GetPOMData("${env.WORKSPACE}/pom.xml","artifactId")
@@ -207,7 +207,7 @@ def UDF_DeployToCloudHub() {
 	echo "APPLICATION_NAME is : ${v_applicationName}"
 	echo "ANYPOINT_CREDENTIAL_ID is : ${v_anypointCredentialID}"
 	echo "ANYPOINT_ORGANIZATION is : ${v_anypointOrganization}"
-	echo "ANYPOINT_ENVIRONMENT is : ${v_AnypointEnvironment}"	
+	echo "ANYPOINT_ENVIRONMENT is : ${v_anypointEnvironment}"	
 	echo "Environment Workspace is : ${env.WORKSPACE}"	
 	echo "Download File Path is : ${v_downloadFilePath}"
 	
@@ -227,7 +227,7 @@ def UDF_DeployToCloudHub() {
 	echo "Anypoint credential ID is : ${v_anypointCredentialID}" 
 
 	withCredentials([usernamePassword(credentialsId: "${v_anypointCredentialID}",passwordVariable: 'ANYPOINT_PASSWORD',usernameVariable: 'ANYPOINT_USERNAME')]) {
-		bat 'mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_AnypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -DapplicationName=${v_applicationName}'
+		bat "mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_anypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -DapplicationName=${v_applicationName}"
 	}
 }
 
