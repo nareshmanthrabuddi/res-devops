@@ -25,7 +25,6 @@ node {
 	def v_muleRuntimeEnvironment =""
 	def v_workers = ""
 	def v_cores = ""
-	def v_appExists= ""
 	def v_applicationName = ""
 	def v_anypointCredentialID = ""
 	def v_anypointOrganization = ""
@@ -63,11 +62,6 @@ node {
          choices: '0.1\n0.2\n1\n2\n4\n8\n16',
             description: 'Please select the vCores for Deployment?',
             name: 'VCORES'
-       ),
-       choiceParam(
-         choices: 'YES\nNO',
-            description: 'Is application existed on cloud?/Are you re-deploying application on Cloud?',
-            name: 'APP_EXISTS'
        ),
        string(
 		   name: 'APPLICATION_NAME', 
@@ -186,7 +180,6 @@ def UDF_DeployToCloudHub() {
 	v_muleRuntimeEnvironment ="${params.MULE_RUNTIME_VERSION}"
 	v_workers = "${params.WORKERS}"
 	v_cores = "${params.VCORES}"
-	v_appExists= "${params.APP_EXISTS}"
 	v_applicationName = "${params.APPLICATION_NAME}"
 	v_anypointCredentialID = "${params.ANYPOINT_CREDENTIAL_ID}"
 	v_anypointOrganization = "${params.ANYPOINT_ORGANIZATION}"
@@ -203,7 +196,6 @@ def UDF_DeployToCloudHub() {
 	echo "MULE_RUNTIME_VERSION is : ${v_muleRuntimeEnvironment}"
 	echo "WORKERS : ${v_workers}"
 	echo "VCORES : ${v_cores}"
-	echo "APP_EXISTS is : ${v_appExists}"
 	echo "APPLICATION_NAME is : ${v_applicationName}"
 	echo "ANYPOINT_ORGANIZATION is : ${v_anypointOrganization}"
 	echo "ANYPOINT_ENVIRONMENT is : ${v_anypointEnvironment}"	
