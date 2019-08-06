@@ -43,6 +43,8 @@
             <businessGroup>${businessGroup}</businessGroup>
             <muleVersion>4.1.5</muleVersion>
             <applicationName>${applicationName}</applicationName>
+	    <workers>${workers}</workers>
+	    <workerType>${cores}</workerType>
             <properties>
                 <key>value</key>
             </properties>
