@@ -257,7 +257,7 @@ def UDF_DeployToCloudHub() {
 				export ANYPOINT_PASSWORD=${password}
 				export ANYPOINT_ORG="${v_anypointOrganization}"
 				export ANYPOINT_ENV="${v_AnypointEnvironment}"
-				anypoint-cli runtime-mgr cloudhub-application modify "${v_applicationName}" \"${v_downloadFilePath}\" --workerSize "${v_cores}" --workers "${v_workers}" --runtime "${v_muleRuntimeEnvironment}"
+				anypoint-cli runtime-mgr cloudhub-application describe res-devops
 			"""
 		}
 	} else {
