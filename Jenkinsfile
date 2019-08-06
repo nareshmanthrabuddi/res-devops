@@ -164,9 +164,7 @@ def UDF_ExecuteSonarQubeRules()
 {	
 	try{
 		echo 'SonarQube Rules Execution started'
-		withSonarQubeEnv('SonarServer-Local') {
-			bat 'mvn sonar:sonar'
-		}
+		bat 'mvn sonar:sonar'
 		echo 'SonarQube Rules Execution Completed'	
 	} catch(error) {
 		throw(error)
@@ -237,15 +235,15 @@ def UDF_DeployToCloudHub() {
 	
 	if("${params.ANYPOINT_CREDENTIAL_ID}" == 'DEV_CREDENTIAL_ID') {
 
-		v_anypointCredentialID = 'TCHINTEGR'
+		v_anypointCredentialID = 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
 
 	} else if("${params.ANYPOINT_CREDENTIAL_ID}" == 'SIT_CREDENTIAL_ID') {
 
-		v_anypointCredentialID= 'PCHINTEGR'
+		v_anypointCredentialID= 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
 
 	} else if("${params.ANYPOINT_CREDENTIAL_ID}" == 'PROD_CREDENTIAL_ID') {
 
-		v_anypointCredentialID= 'PCHINTEGR'
+		v_anypointCredentialID= 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
 	}
 
 	echo "Application name after renaming: ${v_applicationName}"
