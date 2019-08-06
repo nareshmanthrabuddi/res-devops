@@ -39,10 +39,10 @@
             <muleVersion>${muleVersion}</muleVersion>
             <username>${anypoint.username}</username>
             <password>${anypoint.password}</password>
-            <environment>PROD</environment>
-            <businessGroup>LnD</businessGroup>
+            <environment>${environment}</environment>
+            <businessGroup>${businessGroup}</businessGroup>
             <muleVersion>4.1.5</muleVersion>
-            <applicationName>res-devops</applicationName>
+            <applicationName>${applicationName}</applicationName>
             <properties>
                 <key>value</key>
             </properties>
