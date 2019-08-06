@@ -41,7 +41,6 @@
             <password>${anypoint.password}</password>
             <environment>${environment}</environment>
             <businessGroup>${businessGroup}</businessGroup>
-            <muleVersion>4.1.5</muleVersion>
             <applicationName>${applicationName}</applicationName>
 	    <workers>${workers}</workers>
 	    <workerType>${cores}</workerType>
