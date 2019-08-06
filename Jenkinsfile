@@ -164,7 +164,7 @@ def UDF_ExecuteSonarQubeRules()
 {	
 	try{
 		echo 'SonarQube Rules Execution started'
-		//bat 'mvn sonar:sonar'
+		bat 'mvn sonar:sonar'
 		echo 'SonarQube Rules Execution Completed'	
 	} catch(error) {
 		throw(error)
@@ -247,6 +247,7 @@ def UDF_DeployToCloudHub() {
 	}
 
 	echo "Application name after renaming: ${v_applicationName}"
+	echo "Anypoint credential ID is : ${v_anypointCredentialID}" 
 	//echo "Mule Env is : ${v_muleEvn}"
 	//echo "Encrypt Key : ${v_encryptKey}"
 
@@ -257,7 +258,7 @@ def UDF_DeployToCloudHub() {
 				export ANYPOINT_PASSWORD=${password}
 				export ANYPOINT_ORG="${v_anypointOrganization}"
 				export ANYPOINT_ENV="${v_AnypointEnvironment}"
-				anypoint-cli runtime-mgr cloudhub-application describe res-devops
+				anypoint-cli runtime-mgr cloudhub-application modify "${v_applicationName}" \"${v_downloadFilePath}\" --workerSize "${v_cores}" --workers "${v_workers}" --runtime "${v_muleRuntimeEnvironment}"
 			"""
 		}
 	} else {
