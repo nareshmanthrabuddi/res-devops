@@ -148,7 +148,7 @@ def UDF_BuildSourceCode()
 {	
 	try	{
 		echo 'Build is Starting'
-		sh 'mvn -U install -DskipTests=true'	
+		bat 'mvn -U install -DskipTests=true'	
 		echo 'Build Completed'		
 	}catch(error) {
 		throw(error)
@@ -165,7 +165,7 @@ def UDF_ExecuteSonarQubeRules()
 	try{
 		echo 'SonarQube Rules Execution started'
 		withSonarQubeEnv('SonarServer-Local') {
-			sh 'mvn sonar:sonar'
+			bat 'mvn sonar:sonar'
 		}
 		echo 'SonarQube Rules Execution Completed'	
 	} catch(error) {
