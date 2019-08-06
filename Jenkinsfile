@@ -204,15 +204,15 @@ def UDF_DeployToCloudHub() {
 	
 	if("${params.ANYPOINT_CREDENTIAL_ID}" == 'DEV_CREDENTIAL_ID') {
 
-		v_anypointCredentialID = 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
+		v_anypointCredentialID = '8759cea7-c986-4356-a4ac-5cd68cbb31c2'
 
 	} else if("${params.ANYPOINT_CREDENTIAL_ID}" == 'SIT_CREDENTIAL_ID') {
 
-		v_anypointCredentialID= 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
+		v_anypointCredentialID= '8759cea7-c986-4356-a4ac-5cd68cbb31c2'
 
 	} else if("${params.ANYPOINT_CREDENTIAL_ID}" == 'PROD_CREDENTIAL_ID') {
 
-		v_anypointCredentialID= 'bccc9153-9fda-40b4-b266-70fbbb0176c8'
+		v_anypointCredentialID= '8759cea7-c986-4356-a4ac-5cd68cbb31c2'
 	}
 
 	echo "ANYPOINT_CREDENTIAL_ID is : ${v_anypointCredentialID}"
