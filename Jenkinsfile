@@ -328,12 +328,13 @@ def SendEmail(udfp_ToAddress, udfp_FromAddress, udfp_Status)
 	   {
 		   body= "FAILED"
 	   }
-		
+		/*
 		mail subject: "${env.JOB_NAME} (${env.BUILD_NUMBER}) ${body}",
 				body: "It appears that ${env.BUILD_URL} is ${body}",
 				  to: "naresh.manthrabuddi@whishworks.com",
 			 replyTo: "naresh.manthrabuddi@whishworks.com",
 				from: "naresh.manthrabuddi@whishworks.com"
+		*/
 				
 	}catch(error)
 	{		
