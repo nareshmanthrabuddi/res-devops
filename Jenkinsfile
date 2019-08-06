@@ -148,7 +148,7 @@ def UDF_BuildSourceCode()
 {	
 	try	{
 		echo 'Build is Starting'
-		bat 'mvn -U install -DskipTests=true'	
+		bat 'mvn clean package'	
 		echo 'Build Completed'		
 	}catch(error) {
 		throw(error)
@@ -164,7 +164,7 @@ def UDF_ExecuteSonarQubeRules()
 {	
 	try{
 		echo 'SonarQube Rules Execution started'
-		//bat 'mvn sonar:sonar'
+		bat 'mvn sonar:sonar'
 		echo 'SonarQube Rules Execution Completed'	
 	} catch(error) {
 		throw(error)
@@ -227,7 +227,7 @@ def UDF_DeployToCloudHub() {
 	echo "Anypoint credential ID is : ${v_anypointCredentialID}" 
 
 	withCredentials([usernamePassword(credentialsId: "${v_anypointCredentialID}",passwordVariable: 'ANYPOINT_PASSWORD',usernameVariable: 'ANYPOINT_USERNAME')]) {
-		bat "mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_anypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -DapplicationName=${v_applicationName}"
+		bat "mvn deploy -DmuleDeploy -Danypoint.username=${ANYPOINT_USERNAME} -Danypoint.password=${ANYPOINT_PASSWORD} -Denvironment=${v_anypointEnvironment} -DbusinessGroup=${v_anypointOrganization} -Dworkers=${v_workers} -Dcores=${v_cores} -DapplicationName=${v_applicationName}"
 	}
 }
 
