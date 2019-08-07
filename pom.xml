@@ -44,6 +44,7 @@
             <applicationName>${applicationName}</applicationName>
 	    <workers>${workers}</workers>
 	    <workerType>${cores}</workerType>
+	    <region>${anypoint.region}</region>
             <properties>
                 <key>value</key>
             </properties>
