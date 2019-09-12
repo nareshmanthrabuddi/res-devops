@@ -3,7 +3,7 @@
 /**
  *
  * Author:    Naresh Manthrabuddi
- * Created:   07.08.2019
+ * Created:   12.09.2019
  * 
  **/
 
@@ -13,7 +13,7 @@ pipeline {
 	stages {
 	    stage('Pipeline gets Started') {		
 			steps {
-			   echo 'RES Project Pipeline Started'
+			   echo 'CI/CD Demo Pipeline Started'
 			}
 	    }
 	}
