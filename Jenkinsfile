@@ -49,7 +49,7 @@ node {
             name: 'BUILD_MECHANISM'
        ),
        choiceParam(
-         choices: '4.1.3\n4.1.4\n4.1.5',
+         choices: '4.1.3\n4.1.4\n4.1.5\n4.2.1',
             description: 'Please select mule runtime version for Deployment?',
             name: 'MULE_RUNTIME_VERSION'
        ),
